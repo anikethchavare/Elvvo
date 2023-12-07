@@ -1,4 +1,8 @@
-# Elvvo - An Interactive and Smart Traffic Management App
+<h1 align="center">This is Elvvo.</h1>
+
+<p align="center"><img src="https://github.com/anikethchavare/Elvvo/assets/50455489/84eda791-a38e-4bac-af81-595f0fd74807" width="600" height="300"></p>
+
+<p align="center">Elvvo is an interactive and smart traffic management app. Scroll down to learn more.</p>
 
 ## What is Elvvo?
 

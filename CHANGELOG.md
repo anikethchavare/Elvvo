@@ -4,6 +4,11 @@ This is the changelog file of Elvvo.
 
 **Note:** All the dates below are in the IST time format.
 
+## <i>Version - 1.1.1 (7/12/2023)</i>
+
+1. Edited the **README.md** file.
+2. Added a **Media** folder to store files such as images, videos, documents, etc.
+
 ## <i>Version - 1.1.0 (7/12/2023)</i>
 
 1. There are two storage mechanisms for Elvvo: Web Storage and MySQL
