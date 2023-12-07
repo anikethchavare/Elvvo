@@ -14,6 +14,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
 
+// Variables (Notyf)
+var notyf = new Notyf();
+
+// Variables (Date & Time)
+const date = new Date();
+
+const current_day = String(date.getDate()).padStart(2, "0");
+const current_month = String(date.getMonth() + 1).padStart(2, "0");
+const current_year = date.getFullYear();
+
+const full_date = current_day + "-" + current_month + "-" + current_year
+const full_time = date.toLocaleTimeString();
+
 // Variables (Modal)
 const shortcutsModal = new HystModal({
     linkAttributeName: "open-shortcutsModal",
@@ -57,11 +70,27 @@ function secondaryHeaderTypeWriter(secondaryHeaderText) {
     }));
 }
 
-// Function 3 - Delete Cache
-function delete_cache() {
-    // Initializing Notyf
-    var notyf = new Notyf();
+// Function 3 - API Request
+function api_request(url, request_listner = null) {
+    // Configuring the Request
+    const request = new XMLHttpRequest();
 
+    // Checking the Value of "request_listener"
+    if (request_listner != null) {
+        request.addEventListener("load", request_listner);
+    }
+
+    // Configuring the Request
+    request.open("GET", url);
+    request.onerror = function (e) {
+        // Displaying the Notyf
+        notyf.error("Please try again later.");
+    }
+    request.send();
+}
+
+// Function 4 - Delete Cache
+function delete_cache() {
     // API Request 1 - Delete Cache
     fetch("/delete-cache?time=" + new Date().getTime())
         .then(response => {
@@ -77,18 +106,8 @@ function delete_cache() {
         });
 }
 
-// Function 4 - Set Timestamp
+// Function 5 - Set Timestamp
 function set_timestamp(key, timestamp) {
-    // Variables (Date & Time)
-    const date = new Date();
-
-    const current_day = String(date.getDate()).padStart(2, "0");
-    const current_month = String(date.getMonth() + 1).padStart(2, "0");
-    const current_year = date.getFullYear();
-
-    const full_date = current_day + "-" + current_month + "-" + current_year
-    const full_time = date.toLocaleTimeString();
-
     // Setting the Date and Time
     timestamp["Date"] = full_date;
     timestamp["Time"] = full_time;
@@ -107,14 +126,13 @@ function set_timestamp(key, timestamp) {
     }
 }
 
-// Function 5 - Submit (License Plate)
+// Function 6 - Submit (License Plate)
 function submit_license_plate() {
     // Variables
     const license_plate_number = document.getElementById("sub-number").value;
-    var notyf = new Notyf();
 
-    // Request Listener 1 - Submitted License Plate
-    function submitted_license_plate() {
+    // Request Listener 1
+    function request_listener_1() {
         // Response from Request
         const response = JSON.parse(this.responseText);
 
@@ -159,19 +177,12 @@ function submit_license_plate() {
         // Displaying the Notyf
         notyf.error("Enter a number from 1 to 8.");
     } else {
-        // API Request 1 - Submit License Plate
-        const request_submit_license_plate = new XMLHttpRequest();
-        request_submit_license_plate.addEventListener("load", submitted_license_plate);
-        request_submit_license_plate.open("GET", "/algorithm/license-plate?file_type=images&file_number=" + license_plate_number + "&tesseract_path=C:/Program Files/Tesseract-OCR/tesseract.exe&time=" + new Date().getTime());
-        request_submit_license_plate.onerror = function (e) {
-            // Displaying the Notyf
-            notyf.error("Please try again later.");
-        }
-        request_submit_license_plate.send();
+        // API Request - Submit License Plate
+        api_request("/algorithm/license-plate?file_type=images&file_number=" + license_plate_number + "&tesseract_path=C:/Program Files/Tesseract-OCR/tesseract.exe&time=" + new Date().getTime(), request_listener_1);
     }
 }
 
-// Function 6 - OnChange (Vehicle Detection)
+// Function 7 - OnChange (Vehicle Detection)
 function onchange_vehicle_detection() {
     // Variables
     var vehicle_detection_type = document.getElementById("sub-type");
@@ -187,14 +198,12 @@ function onchange_vehicle_detection() {
     }
 }
 
-// Function 7 - Submit (Vehicle Detection)
+// Function 8 - Submit (Vehicle Detection)
 function submit_vehicle_detection() {
     // Variables
     const vehicle_detection_type = document.getElementById("sub-type");
     const vehicle_detection_type_value = vehicle_detection_type.options[vehicle_detection_type.selectedIndex].value;
     const vehicle_detection_number = document.getElementById("sub-number").value;
-
-    var notyf = new Notyf();
 
     // Request Listener 1
     function request_listener_1() {
@@ -285,15 +294,8 @@ function submit_vehicle_detection() {
             // Displaying the Notyf
             notyf.error("Enter a number from 1 to 10.");
         } else {
-            // API Request 1 - Submit
-            const request_submit_vehicle_detection = new XMLHttpRequest();
-            request_submit_vehicle_detection.addEventListener("load", request_listener_1);
-            request_submit_vehicle_detection.open("GET", "/algorithm/vehicle-detection?file_type=images&file_number=" + vehicle_detection_number + "&time=" + new Date().getTime());
-            request_submit_vehicle_detection.onerror = function (e) {
-                // Displaying the Notyf
-                notyf.error("Please try again later.");
-            }
-            request_submit_vehicle_detection.send();
+            // API Request - Submit
+            api_request("/algorithm/vehicle-detection?file_type=images&file_number=" + vehicle_detection_number + "&time=" + new Date().getTime(), request_listener_1);
         }
     } else if (vehicle_detection_type_value == "Video") {
         // Checking the Value of "vehicle_detection_number"
@@ -301,20 +303,13 @@ function submit_vehicle_detection() {
             // Displaying the Notyf
             notyf.error("Enter the number 1.");
         } else {
-            // API Request 2 - Submit
-            const request_submit_vehicle_detection = new XMLHttpRequest();
-            request_submit_vehicle_detection.addEventListener("load", request_listener_2);
-            request_submit_vehicle_detection.open("GET", "/algorithm/vehicle-detection?file_type=videos&file_number=" + vehicle_detection_number + "&time=" + new Date().getTime());
-            request_submit_vehicle_detection.onerror = function (e) {
-                // Displaying the Notyf
-                notyf.error("Please try again later.");
-            }
-            request_submit_vehicle_detection.send();
+            // API Request - Submit
+            api_request("/algorithm/vehicle-detection?file_type=videos&file_number=" + vehicle_detection_number + "&time=" + new Date().getTime(), request_listener_2);
         }
     }
 }
 
-// Function 8 - OnChange (People Detection)
+// Function 9 - OnChange (People Detection)
 function onchange_people_detection() {
     // Variables
     var people_detection_type = document.getElementById("sub-type");
@@ -330,14 +325,12 @@ function onchange_people_detection() {
     }
 }
 
-// Function 9 - Submit (People Detection)
+// Function 10 - Submit (People Detection)
 function submit_people_detection() {
     // Variables
     const people_detection_type = document.getElementById("sub-type");
     const people_detection_type_value = people_detection_type.options[people_detection_type.selectedIndex].value;
     const people_detection_number = document.getElementById("sub-number").value;
-
-    var notyf = new Notyf();
 
     // Request Listener 1
     function request_listener_1() {
@@ -410,15 +403,8 @@ function submit_people_detection() {
             // Displaying the Notyf
             notyf.error("Enter the number 1.");
         } else {
-            // API Request 1 - Submit
-            const request_submit_people_detection = new XMLHttpRequest();
-            request_submit_people_detection.addEventListener("load", request_listener_1);
-            request_submit_people_detection.open("GET", "/algorithm/people-detection?file_type=images&file_number=" + people_detection_number + "&time=" + new Date().getTime());
-            request_submit_people_detection.onerror = function (e) {
-                // Displaying the Notyf
-                notyf.error("Please try again later.");
-            }
-            request_submit_people_detection.send();
+            // API Request - Submit
+            api_request("/algorithm/people-detection?file_type=images&file_number=" + people_detection_number + "&time=" + new Date().getTime(), request_listener_1);
         }
     } else if (people_detection_type_value == "Video") {
         // Checking the Value of "people_detection_number"
@@ -426,15 +412,8 @@ function submit_people_detection() {
             // Displaying the Notyf
             notyf.error("Enter a number from 1 to 5.");
         } else {
-            // API Request 2 - Submit
-            const request_submit_people_detection = new XMLHttpRequest();
-            request_submit_people_detection.addEventListener("load", request_listener_2);
-            request_submit_people_detection.open("GET", "/algorithm/people-detection?file_type=videos&file_number=" + people_detection_number + "&time=" + new Date().getTime());
-            request_submit_people_detection.onerror = function (e) {
-                // Displaying the Notyf
-                notyf.error("Please try again later.");
-            }
-            request_submit_people_detection.send();
+            // API Request - Submit
+            api_request("/algorithm/people-detection?file_type=videos&file_number=" + people_detection_number + "&time=" + new Date().getTime(), request_listener_2);
         }
     }
 }

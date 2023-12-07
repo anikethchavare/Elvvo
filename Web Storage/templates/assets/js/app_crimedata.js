@@ -25,16 +25,6 @@ function view_data() {
         const license_plate_number = prompt("Enter the license plate number:");
 
         if (license_plate_number != null & license_plate_number.length > 0) {
-            // Variables (Date & Time)
-            const date = new Date();
-
-            const current_day = String(date.getDate()).padStart(2, "0");
-            const current_month = String(date.getMonth() + 1).padStart(2, "0");
-            const current_year = date.getFullYear();
-
-            const full_date = current_day + "-" + current_month + "-" + current_year
-            const full_time = date.toLocaleTimeString();
-
             // Variables
             var local_storage_data = JSON.parse(localStorage.getItem("Crime Data"))[license_plate_number];
 
@@ -245,16 +235,6 @@ function local_storage_exists() {
 
 // Function 6 - Add Offense Local Storage
 function add_offense_local_storage(license_plate_number, offense, fine) {
-    // Variables (Date & Time)
-    const date = new Date();
-
-    const current_day = String(date.getDate()).padStart(2, "0");
-    const current_month = String(date.getMonth() + 1).padStart(2, "0");
-    const current_year = date.getFullYear();
-
-    const full_date = current_day + "-" + current_month + "-" + current_year
-    const full_time = date.toLocaleTimeString();
-
     // Checking if Local Storage Exists
     if (local_storage_exists()) {
         // Variables

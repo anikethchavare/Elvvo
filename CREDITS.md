@@ -14,6 +14,7 @@ The source code, license, and other information about their open-source projects
 6. pytesseract (Matthias A Lee) - Visit [here](https://github.com/madmaze/pytesseract).
 7. numpy (NumPy) - Visit [here](https://github.com/numpy/numpy).
 8. Pillow (Pillow) - Visit [here](https://github.com/python-pillow/Pillow).
+9. mysql-connector-python (MySQL) - Visit [here](https://dev.mysql.com/doc/connector-python/en).
 
 ## <i>CSS Libraries</i>
 
