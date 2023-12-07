@@ -19,10 +19,26 @@ limitations under the License.
 '''
 
 # Imports
+import os
 import mysql.connector as mysql
+from configparser import ConfigParser
 
 from fastapi import Request, APIRouter
 from fastapi.responses import JSONResponse
+
+# Initializing the "ConfigParser" Class
+config_parser_object = ConfigParser()
+
+# Checking if "config.ini" File Exists
+if (not os.path.exists(os.path.dirname(os.path.realpath(__file__)).replace(os.sep, "/").replace("/python_routers", "") + "/config.ini")):
+    # Raising an Exception
+    raise Exception("The 'config.ini' does not exist.")
+else:
+    # Reading the Values from the "config.ini" File
+    config_parser_object.read(os.path.dirname(os.path.realpath(__file__)).replace(os.sep, "/").replace("/python_routers", "") + "/config.ini")
+
+    # Assigning the Variable
+    mysql_password = config_parser_object["MYSQL"]["password"]
 
 # Initialising the "router_mysql" Router
 router_mysql = APIRouter(prefix="/mysql")
@@ -31,7 +47,7 @@ router_mysql = APIRouter(prefix="/mysql")
 @router_mysql.get("/add-row")
 async def router_mysql_addrow(request: Request, table_name: str = None, items: str = None):
     # Variables (MySQL - Connector and Cursor)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"
@@ -74,7 +90,7 @@ async def router_mysql_addrow(request: Request, table_name: str = None, items: s
 @router_mysql.get("/crime-data/view-data")
 async def router_mysql_crimedata_viewdata(request: Request, license_plate_number: str = None):
     # Variables (MySQL - Connector and Cursor)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"
@@ -105,7 +121,7 @@ async def router_mysql_crimedata_viewdata(request: Request, license_plate_number
 @router_mysql.get("/crime-data/record-exists")
 async def router_mysql_crimedata_recordexists(request: Request, license_plate_number: str = None):
     # Variables (MySQL - Connector and Cursor)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"
@@ -130,7 +146,7 @@ async def router_mysql_crimedata_recordexists(request: Request, license_plate_nu
 @router_mysql.get("/crime-data/remove-offense")
 async def router_mysql_crimedata_removeoffense(request: Request, license_plate_number: str = None, offense: str = None):
     # Variables (MySQL - Connector and Cursor)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"
@@ -164,7 +180,7 @@ async def router_mysql_crimedata_removeoffense(request: Request, license_plate_n
 @router_mysql.get("/crime-data/total-fines")
 async def router_mysql_crimedata_totalfines(request: Request, license_plate_number: str = None):
     # Variables (MySQL - Connector and Cursor)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"

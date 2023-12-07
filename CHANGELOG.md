@@ -4,6 +4,10 @@ This is the changelog file of Elvvo.
 
 **Note:** All the dates below are in the IST time format.
 
+## <i>Version - 1.1.2 (8/12/2023)</i>
+
+1. Running the **run-steps.py** Python file will prompt you for your MySQL password. It will be stored in a **config.ini** file for later use.
+
 ## <i>Version - 1.1.1 (7/12/2023)</i>
 
 1. Edited the **README.md** file.

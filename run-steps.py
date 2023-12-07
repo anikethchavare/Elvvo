@@ -21,15 +21,29 @@ limitations under the License.
 ''' Run this program if you're setting up Elvvo. '''
 
 ''' STEP 1 - Download the latest version of Python. The system should be 64-bit. '''
-''' STEP 2 - Run this Python file to install and upgrade the necessary packages and tools required for Elvvo. '''
+''' STEP 2 - Enter your MySQL password when it asks you. '''
+''' STEP 3 - Let this file install and upgrade the necessary packages and tools required for Elvvo. '''
 
 # Imports
 import os
+from configparser import ConfigParser
 
-# Start
+# Initializing the "ConfigParser" Class
+config_parser_object = ConfigParser()
+
+# Setting the Data in the "config_parser_object" Variable
+config_parser_object["MYSQL"] = {
+    "password": str(input("\nEnter the MySQL password: "))
+}
+
+# Writing "config_parser_object" to the "config.ini" File
+with open("MySQL/config.ini", "w") as config_file:
+    config_parser_object.write(config_file)
+
+# Start Text
 print("\nInstalling and upgrading the necessary packages and tools required for Elvvo.\n")
 
-# Packages and Libraries
+# Installing and Updgrading the Python Packages and Libraries
 os.system("python -m pip install --upgrade pip")
 
 os.system("pip install --upgrade fastapi")

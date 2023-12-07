@@ -23,6 +23,7 @@ import os
 import shutil
 import uvicorn
 import mysql.connector as mysql
+from configparser import ConfigParser
 
 from python_routers import python_router_mysql
 from python_routers import python_router_algorithm
@@ -32,13 +33,27 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi import FastAPI, Request, HTTPException
 
+# Initializing the "ConfigParser" Class
+config_parser_object = ConfigParser()
+
+# Checking if "config.ini" File Exists
+if (not os.path.exists(os.path.dirname(os.path.realpath(__file__)).replace(os.sep, "/") + "/config.ini")):
+    # Raising an Exception
+    raise Exception("The 'config.ini' does not exist.")
+else:
+    # Reading the Values from the "config.ini" File
+    config_parser_object.read(os.path.dirname(os.path.realpath(__file__)).replace(os.sep, "/") + "/config.ini")
+
+    # Assigning the Variable
+    mysql_password = config_parser_object["MYSQL"]["password"]
+
 # Function 1 - MySQL Prerequisite
 def mysql_prerequisite():
     # Variables
     table_names = ["vehicle_detection_data", "license_plate_data", "people_detection_data", "crime_data"]
 
     # Variables (MySQL - Connector and Cursor - Without Database)
-    mysql_connector = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023")
+    mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password)
     mysql_cursor = mysql_connector.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector"
@@ -52,7 +67,7 @@ def mysql_prerequisite():
         mysql_cursor.execute("CREATE DATABASE Elvvo;")
 
     # Variables (MySQL - Connector and Cursor - With Database)
-    mysql_connector_database = mysql.connect(host="localhost", user="root", password="MySQLPassword@2023", database="Elvvo")
+    mysql_connector_database = mysql.connect(host="localhost", user="root", password=mysql_password, database="Elvvo")
     mysql_cursor_database = mysql_connector_database.cursor()
 
     # Setting the "autocommit" Attribute to "mysql_connector_database"
