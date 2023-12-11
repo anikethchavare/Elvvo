@@ -13,7 +13,7 @@
         <meta name="copyright" content="Aniketh Chavare">
 
         <!--Title & Favicon-->
-        <title>License Plate | Elvvo</title>
+        <title>License Plate Detection | Elvvo</title>
         <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 
         <!--CSS-->
@@ -28,7 +28,7 @@
 
         <center><p id="sub-text" class="main-content">Enter Image Number 1-8</p></center>
         <center><input type="number" id="sub-number" class="main-content" pattern="[0-8]"></center>
-        <center><button id="sub-submit" class="main-content" onclick="submit_license_plate();">Submit</button></center>
+        <center><button id="sub-submit" class="main-content" onclick="submit_license_plate_detection();">Submit</button></center>
         <center><img id="sub-picture"></center>
 
         <div id="footer">
@@ -45,7 +45,7 @@
                     <center><p class="modal-shortcuts-text" style="display: inline-block; text-align: left;">
                         <span title="Opens Home (Page)">1) Ctrl + E</span><br>
                         <span title="Opens Vehicle Detection (Page)">2) Ctrl + V</span><br>
-                        <span title="Opens License Plate (Page)">3) Ctrl + L</span><br>
+                        <span title="Opens License Plate Detection (Page)">3) Ctrl + L</span><br>
                         <span title="Opens People Detection (Page)">4) Ctrl + P</span><br>
                         <span title="Opens Crime Data (Page)">5) Ctrl + C</span><br>
                         <span title="Delete Cache">6) Ctrl + D</span><br>
@@ -63,7 +63,7 @@
                     <center><p class="modal-header">Media</p></center>
                     <p class="modal-media-text" style="display: inline-block; text-align: left;">
                         <span>All the sample images and videos used in Elvvo come with this project, so you don't need to have your own images or videos to use Elvvo.</span><br><br>
-                        <span>If you want to view or download the sample images and videos that come with Elvvo, click <a href="https://github.com/anikethchavare/Elvvo/tree/main/Web%20Storage/python_routers/sample_media" target="_blank">here</a>.</span><br>
+                        <span>If you want to view or download the sample images and videos that come with Elvvo, click <a href="https://github.com/anikethchavare/Elvvo/tree/main/MySQL/python_routers/sample_media" target="_blank">here</a>.</span><br>
                     </p>
                 </div>
             </div>
@@ -76,6 +76,6 @@
 
         <script src="assets/js/hystmodal.js"></script>
         <script src="assets/js/main.js"></script>
-        <script>headerTypeWriter("Elvvo - License Plate", "Identify license plate numbers using OCR and the OpenCV module.");</script>
+        <script>headerTypeWriter("Elvvo - License Plate Detection", "Identify license plate numbers using OCR and the OpenCV module.");</script>
     </body>
 </html>

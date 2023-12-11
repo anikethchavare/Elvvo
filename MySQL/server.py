@@ -50,7 +50,7 @@ else:
 # Function 1 - MySQL Prerequisite
 def mysql_prerequisite():
     # Variables
-    table_names = ["vehicle_detection_data", "license_plate_data", "people_detection_data", "crime_data"]
+    table_names = ["vehicle_detection_data", "license_plate_detection_data", "people_detection_data", "crime_data"]
 
     # Variables (MySQL - Connector and Cursor - Without Database)
     mysql_connector = mysql.connect(host="localhost", user="root", password=mysql_password)
@@ -81,7 +81,7 @@ def mysql_prerequisite():
         if (len(mysql_cursor_database.fetchall()) == 0):
             # Creating the Tables
             if (table == "vehicle_detection_data"): mysql_cursor_database.execute("CREATE TABLE vehicle_detection_data(Date VARCHAR(100), Time VARCHAR(100), File_Name VARCHAR(100), File_Type VARCHAR(100), Number_of_Vehicles INT);")
-            elif (table == "license_plate_data"): mysql_cursor_database.execute("CREATE TABLE license_plate_data(Date VARCHAR(100), Time VARCHAR(100), File_Name VARCHAR(100), File_Type VARCHAR(100), License_Plate_Number VARCHAR(100));")
+            elif (table == "license_plate_detection_data"): mysql_cursor_database.execute("CREATE TABLE license_plate_detection_data(Date VARCHAR(100), Time VARCHAR(100), File_Name VARCHAR(100), File_Type VARCHAR(100), License_Plate_Number VARCHAR(100));")
             elif (table == "people_detection_data"): mysql_cursor_database.execute("CREATE TABLE people_detection_data(Date VARCHAR(100), Time VARCHAR(100), File_Name VARCHAR(100), File_Type VARCHAR(100), Number_of_People INT);")
             elif (table == "crime_data"): mysql_cursor_database.execute("CREATE TABLE crime_data(License_Plate_Number VARCHAR(100), Date VARCHAR(100), Time VARCHAR(100), Offense VARCHAR(500), Fine INT);")
 
@@ -113,14 +113,14 @@ async def app_vehicledetection(request: Request):
     # Returning the Template
     return Jinja2Templates(directory="templates").TemplateResponse("vehicle-detection.html", {"request": request})
 
-# License Plate (App)
-@app.get("/license-plate")
-async def app_licenseplate(request: Request):
+# License Plate Detection (App)
+@app.get("/license-plate-detection")
+async def app_licenseplatedetection(request: Request):
     # MySQL Prerequisite
     mysql_prerequisite()
 
     # Returning the Template
-    return Jinja2Templates(directory="templates").TemplateResponse("license-plate.html", {"request": request})
+    return Jinja2Templates(directory="templates").TemplateResponse("license-plate-detection.html", {"request": request})
 
 # People Detection (App)
 @app.get("/people-detection")

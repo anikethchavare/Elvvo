@@ -4,6 +4,11 @@ This is the changelog file of Elvvo.
 
 **Note:** All the dates below are in the IST time format.
 
+## <i>Version - 1.1.3 (12/12/2023)</i>
+
+1. Edited the sub-heading of the **People Detection** page.
+2. Changed the page **License Plate** to **License Plate Detection**.
+
 ## <i>Version - 1.1.2 (8/12/2023)</i>
 
 1. Running the **run-steps.py** Python file will prompt you for your MySQL password. It will be stored in a **config.ini** file for later use.

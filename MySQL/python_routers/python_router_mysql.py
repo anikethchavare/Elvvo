@@ -63,17 +63,17 @@ async def router_mysql_addrow(request: Request, table_name: str = None, items: s
     items = eval(items)
 
     # Checking the Value of the "table_name" Query Parameter
-    if (table_name not in ["vehicle_detection_data", "license_plate_data", "people_detection_data", "crime_data"]):
+    if (table_name not in ["vehicle_detection_data", "license_plate_detection_data", "people_detection_data", "crime_data"]):
         # Returning the Error
-        return JSONResponse({"Error": "The 'table_name' query parameter must be either 'vehicle_detection_data', 'license_plate_data', 'people_detection_data', or 'crime_data'.", "Status Code": 400}, status_code=400)
+        return JSONResponse({"Error": "The 'table_name' query parameter must be either 'vehicle_detection_data', 'license_plate_detection_data', 'people_detection_data', or 'crime_data'.", "Status Code": 400}, status_code=400)
 
     # Checking the Value of the "table_name" Query Parameter
     if (table_name == "vehicle_detection_data"):
         # Inserting Data into the "vehicle_detection_data" Table
         if (items["Number of Vehicles"] == ""): mysql_cursor.execute("INSERT INTO {0} VALUES('{1}', '{2}', '{3}', '{4}', NULL);".format(table_name, items["Date"], items["Time"], items["File Name"], items["File Type"]))
         else: mysql_cursor.execute("INSERT INTO {0} VALUES('{1}', '{2}', '{3}', '{4}', {5});".format(table_name, items["Date"], items["Time"], items["File Name"], items["File Type"], items["Number of Vehicles"]))
-    elif (table_name == "license_plate_data"):
-        # Inserting Data into the "license_plate_data" Table
+    elif (table_name == "license_plate_detection_data"):
+        # Inserting Data into the "license_plate_detection_data" Table
         mysql_cursor.execute("INSERT INTO {0} VALUES('{1}', '{2}', '{3}', '{4}', '{5}');".format(table_name, items["Date"], items["Time"], items["File Name"], items["File Type"], items["License Plate Number"]))
     elif (table_name == "people_detection_data"):
         # Inserting Data into the "people_detection_data" Table

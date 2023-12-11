@@ -41,7 +41,7 @@ const mediaModal = new HystModal({
 // Keyboard Shortcuts
 Mousetrap.bind("ctrl+e", function() {window.open("/"); return false;}); // Ctrl + E
 Mousetrap.bind("ctrl+v", function() {window.open("/vehicle-detection"); return false;}); // Ctrl + V
-Mousetrap.bind("ctrl+l", function() {window.open("/license-plate"); return false;}); // Ctrl + L
+Mousetrap.bind("ctrl+l", function() {window.open("/license-plate-detection"); return false;}); // Ctrl + L
 Mousetrap.bind("ctrl+p", function() {window.open("/people-detection"); return false;}); // Ctrl + P
 Mousetrap.bind("ctrl+c", function() {window.open("/crime-data"); return false;}); // Ctrl + C
 Mousetrap.bind("ctrl+d", function() {delete_cache(); return false;}); // Ctrl + D
@@ -126,8 +126,8 @@ function set_timestamp(key, timestamp) {
     }
 }
 
-// Function 6 - Submit (License Plate)
-function submit_license_plate() {
+// Function 6 - Submit (License Plate Detection)
+function submit_license_plate_detection() {
     // Variables
     const license_plate_number = document.getElementById("sub-number").value;
 
@@ -156,7 +156,7 @@ function submit_license_plate() {
         timestamp["File Type"] = "Image";
 
         // Setting the Timestamp in LocalStorage
-        set_timestamp("License Plate Data", timestamp);
+        set_timestamp("License Plate Detection Data", timestamp);
 
         // Displaying the Notyf
         notyf.success("License Plate: " + response["License Plate Number"]);
@@ -178,7 +178,7 @@ function submit_license_plate() {
         notyf.error("Enter a number from 1 to 8.");
     } else {
         // API Request - Submit License Plate
-        api_request("/algorithm/license-plate?file_type=images&file_number=" + license_plate_number + "&tesseract_path=C:/Program Files/Tesseract-OCR/tesseract.exe&time=" + new Date().getTime(), request_listener_1);
+        api_request("/algorithm/license-plate-detection?file_type=images&file_number=" + license_plate_number + "&tesseract_path=C:/Program Files/Tesseract-OCR/tesseract.exe&time=" + new Date().getTime(), request_listener_1);
     }
 }
 

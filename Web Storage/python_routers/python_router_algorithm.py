@@ -147,9 +147,9 @@ async def router_algorithm_vehicledetection(request: Request, file_type: str = N
         # Returning the Message
         return JSONResponse({"Message": "Successfully detected vehicles in the video.", "Status Code": 200}, status_code=200)
 
-# License Plate (router_algorithm)
-@router_algorithm.get("/license-plate")
-async def router_algorithm_licenseplate(request: Request, file_type: str = None, file_number: int = None, tesseract_path: str = None):
+# License Plate Detection (router_algorithm)
+@router_algorithm.get("/license-plate-detection")
+async def router_algorithm_licenseplatedetection(request: Request, file_type: str = None, file_number: int = None, tesseract_path: str = None):
     # Checking if Query Parameters are Present
     for parameter in [file_type, file_number, tesseract_path]:
         if (parameter in [None, "", " "]):

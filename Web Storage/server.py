@@ -48,11 +48,11 @@ async def app_vehicledetection(request: Request):
     # Returning the Template
     return Jinja2Templates(directory="templates").TemplateResponse("vehicle-detection.html", {"request": request})
 
-# License Plate (App)
-@app.get("/license-plate")
-async def app_licenseplate(request: Request):
+# License Plate Detection (App)
+@app.get("/license-plate-detection")
+async def app_licenseplatedetection(request: Request):
     # Returning the Template
-    return Jinja2Templates(directory="templates").TemplateResponse("license-plate.html", {"request": request})
+    return Jinja2Templates(directory="templates").TemplateResponse("license-plate-detection.html", {"request": request})
 
 # People Detection (App)
 @app.get("/people-detection")
