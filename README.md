@@ -6,92 +6,64 @@
 
 ## What is Elvvo?
 
-Elvvo is an all-in-one traffic solution that changes its traffic lights according to traffic density. Some other features of Elvvo are:
-- It determines the speed of vehicles in a given video. A video is loaded and the speed of each vehicle is calculated and the speed (in km/h) will be written in white text right above the vehicle.
-- There are many license plate images. So, Elvvo can process that image and return the license number as a String. Then, you can add a crime or fine to that number and it creates separate JSON files in ```data/crime```.
-- It changes the lights according to the traffic density as given in the images which are randomly selected by the program. The program randomly selects images, calculates the traffic density, and says whether it has low, high, or very high traffic.
+Elvvo is an interactive and smart traffic management app. It's also an all-in-one traffic solution. Some features include:
 
-## What is BorderHacks2021?
+- It determines and extracts license plate numbers from images and returns them as a string.
+- It detects vehicles in images and videos and returns the count of vehicles detected. According to the count, it says whether the traffic density is low, high, or very high.
+- It can detect people in images and videos.
+- You can manage traffic offenses committed by drivers with a simple UI.
 
-BorderHacks is a 36-hour online hackathon hosted by Aislyn Laurent and is sponsored by many companies. This is their [link](https://www.borderhacks2021.devpost.com).
+## How to Use It?
 
-One more thing, I couldn't possibly work on this project without the support from my school "Alpine Public School". Their website is [this](https://alpinepublicschool.com). My school is the one that got me the equipment I needed to complete my project, and without them, I don't think I could've participated in this hackathon.
+Download or clone the repository locally and store it in a sigle directory.
 
-## Inspiration
+To use the **MySQL** version, run the `server.py` file present in the `MySQL` folder. To use the **Web Storage** version, run the `server.py` file present in the `Web Storage` folder.
 
-I just wanted to create something that helps improve traffic flow in major cities. Then, I got the idea of creating Elvvo, an all-in-one traffic solution that helps you to automatically change the lights according to the traffic density.
+Once done, open your preferred browser and visit `http://localhost:7777`. You can play with Elvvo now!
 
-It also has other features like determining the speed of vehicles or storing criminal data on vehicles using their license number.
+## What was BorderHacks2021?
+
+BorderHacks was a 36-hour online hackathon hosted by Aislyn Laurent and was sponsored by many companies. This is their [link](https://www.borderhacks2021.devpost.com).
+
+After the hackathon ended, I worked on this project even more and came up with the good-looking UI and integrated the project with MySQL and Web Storage.
+
+I couldn't have possibly worked on this project without the support from my school. My school helped me with the equipment required to complete my project.
 
 ## Technologies Used
 
-This application is purely written in Python. For the main GUI, I used PyQt5. For the images and videos, I downloaded those and used them in the programs. For the criminal records, I used JSON to store the license numbers, list of crimes, and the fine.
+This application is written in HTML, CSS, JavaScript, and Python. I used HTML, CSS, and JS for the front-end and Python for the back-end. I used sample images and videos (found online) to demonstrate and test my project. For the criminal database, I used MySQL and Web Storage.
 
 For the computer vision and OCR (Optical Character Recognition), I used OpenCV and PyTesseract (TesseractOCR) respectively.
 
 The technologies used in making this project are:
-* Python (PyQt5, Core)
-* Managing JSON Files with Python
-* API Requests (GET)
-* Raspberry Pi
-* Managing External Hardware on Raspberry Pi
-* Computer Vision (OpenCV)
-* Optical Character Recognition (OCR - PyTesseract)
 
-## All the Libraries Used
-
-I have used many libraries which are:
-* RPi.GPIO
-* time
-* sys
-* PyQt5
-* atexit
-* requests
-* json
-* cv2
-* threading
-* dlib
-* math
-* random
-* os
-* typing
-* imutils
-* numpy
-* pytesseract
+- HTML
+- CSS
+- JavaScript
+- Python
+- MySQL and Web Storage (LocalStorage)
+- OpenCV and PyTesseract (Computer Vision and OCR)
+- API Requests (REST)
 
 ## Challenges I Ran Into
 
-There were a lot of challenges that I ran into. One was to download all the images and videos. Most of the media that I downloaded were either corrupt or not compatible with the program. It at least took me 2 hours to find the proper media that I needed.
+The first one was to download the appropriate images and videos which were compatible with the program. Most of the files downloaded were corrupt or incompatible with the program.
 
-When I developed the 'Speed' functionality, it was not quite fetching the speeds of every passing vehicle. So, it took me a lot of time to find correct pre-trained models of these cars and add them to the programs.
+The second one was to find the correct pre-trained models to detect the vehicles and people.
 
-The last challenge was to add the data to the JSON files and try to modify/edit the data because, in the beginning, I was planning to put all the data in one JSON file itself, but then I got the idea to create different JSON files for different license numbers. Also, there was something wrong with the configuration of my raspberry pi, so I had to do the whole thing again from scratch (but I had backed up all the code on my laptop).
+## What's Next for Elvvo
 
-## Accomplishments I'm Proud Of
+I may include more features in the coming future like fetching the real-time speed of vehicles in a video and accurately extracting the license plate numbers from the provided images.
 
-I was successfully getting the traffic density data to finish my program. I was also proud when I finally finished extracting the license numbers and trying to get the speed of the vehicles.
-
-## What I Learned
-
-I learned how computer vision works (OpenCV) and OCR (TesseractOCR). I also learned how to manage JSON data and create Python GUI's.
-
-## What's Next for Elvoo
-
-Well, this is just a prototype and I may include more features like catching the speed of the vehicles through a camera or accurately identifying the license number and traffic density on an actual street. One thing I am actually looking forward to is to create a database with license numbers, the vehicle's owner's email, name, address, etc. and try to send reminders/alerts through emails/SMS if that person got a ticket or a fine, or if they paid one already. It's something like getting personalized alerts.
+I am looking forward to develop a database with the license plate numbers and the vehicle owner's contact information to send them personalized alerts to pay fines for an offense they committed.
 
 ## External Media
 
-I just created a PPT on Elvvo. You can view that [here](https://docs.google.com/presentation/d/1SvfmvYcGw8A6jx_Evs8ZN9_C0nzeWCEY/edit?usp=sharing&ouid=109927448714846827229&rtpof=true&sd=true).
+When I originally created Elvvo, I made a small PowerPoint presentation for it. You can view that [here](https://docs.google.com/presentation/d/1SvfmvYcGw8A6jx_Evs8ZN9_C0nzeWCEY/edit?usp=sharing&ouid=109927448714846827229&rtpof=true&sd=true).
 
-I also uploaded a demo video on YouTube. You can check it out [here](https://youtu.be/38bXPLaae34).
+I also uploaded a demo video on YouTube. You can chech that out [here](https://youtu.be/38bXPLaae34).
 
 You can view my participation certificate [here](https://drive.google.com/file/d/1PbTYM9aNIBi2kesFaR2R-fnhRxQEcvhk).
-
-## How to Use It?
-
-Yes, you can download the entire repository and store it in one directory itself.
-
-You should download all the necessary Python packages and run the `main.py` program to start the GUI.
 
 ## Changelog
 

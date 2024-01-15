@@ -28,6 +28,9 @@ limitations under the License.
 import os
 from configparser import ConfigParser
 
+# Variables
+python_packages = ["fastapi", "uvicorn", "jinja2", "opencv-python", "imutils", "pytesseract", "numpy", "Pillow", "mysql-connector-python"]
+
 # Initializing the "ConfigParser" Class
 config_parser_object = ConfigParser()
 
@@ -43,15 +46,6 @@ with open("MySQL/config.ini", "w") as config_file:
 # Start Text
 print("\nInstalling and upgrading the necessary packages and tools required for Elvvo.\n")
 
-# Installing and Updgrading the Python Packages and Libraries
+# Installing and Upgrading PIP + Python Packages
 os.system("python -m pip install --upgrade pip")
-
-os.system("pip install --upgrade fastapi")
-os.system("pip install --upgrade uvicorn")
-os.system("pip install --upgrade jinja2")
-os.system("pip install --upgrade opencv-python")
-os.system("pip install --upgrade imutils")
-os.system("pip install --upgrade pytesseract")
-os.system("pip install --upgrade numpy")
-os.system("pip install --upgrade Pillow")
-os.system("pip install --upgrade mysql-connector-python")
+os.system("pip install --upgrade {0}".format(" ".join(python_packages)))

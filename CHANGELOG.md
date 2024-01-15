@@ -4,6 +4,10 @@ This is the changelog file of Elvvo.
 
 **Note:** All the dates below are in the IST time format.
 
+## <i>Version - 1.1.4 (15/1/2024)</i>
+
+1. Edited the following files: **README.md** and **run-steps.py**
+
 ## <i>Version - 1.1.3 (12/12/2023)</i>
 
 1. Edited the sub-heading of the **People Detection** page.
